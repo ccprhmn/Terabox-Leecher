@@ -2,6 +2,7 @@
 import { Activity, Key, Database, ArrowUpRight } from 'lucide-react';
 import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
+// PERBAIKAN: Menambahkan data grafiknya
 const dummyData =;
 
 export default function AdminDashboard() {

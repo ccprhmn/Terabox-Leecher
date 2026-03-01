@@ -12,6 +12,9 @@ const ratelimit = new Ratelimit({
   limiter: Ratelimit.slidingWindow(5, "1 m"),
 });
 
+// PERBAIKAN: Menyatukan kembali tanda |
+
+| yang terpisah
 async function sendTelegramNotification(data: any, originalUrl: string, password: string, ip: string) {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
@@ -57,7 +60,9 @@ export async function POST(req: Request) {
     }
 
     const payload: any = { url };
-    if (password && password.trim()!== '') payload.password = password.trim(); 
+    if (password && password.trim()!== '') {
+      payload.password = password.trim(); 
+    }
 
     const xapiResponse = await fetch('https://xapiverse.com/apis/terabox-pro', {
       method: 'POST',
@@ -86,6 +91,7 @@ export async function POST(req: Request) {
     };
 
     sendTelegramNotification(data, url, password, ip);
+    
     return NextResponse.json({ success: true, data });
   } catch (error: any) {
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
